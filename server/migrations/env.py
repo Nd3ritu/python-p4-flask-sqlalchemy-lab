@@ -32,6 +32,7 @@ target_metadata = current_app.extensions['migrate'].db.metadata
 # ... etc.
 
 
+
 def run_migrations_offline():
     """Run migrations in 'offline' mode.
 
@@ -45,8 +46,10 @@ def run_migrations_offline():
 
     """
     url = config.get_main_option("sqlalchemy.url")
+    if not url:
+        url = "sqlite:///app.db"
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True
+        url=url, target_metadata=target_metadata, literal_binds=True,**{"batch_mode": True}
     )
 
     with context.begin_transaction():
