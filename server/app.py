@@ -36,7 +36,9 @@ def zookeeper_by_id(id):
     response_body += f'<ul>ID: {zookeeper.id}</ul>'
     response_body += f'<ul>Name: {zookeeper.name}</ul>'
     response_body += f'<ul>Birthday: {zookeeper.birthday}</ul>'
-    response_body += f'<ul>Animal: {zookeeper.animals}</ul>'
+    
+    for animal in zookeeper.animals:
+        response_body += f'<ul>Animals: {animal.name}</ul>'
     return make_response(response_body)
 
 @app.route('/enclosure/<int:id>')
@@ -46,7 +48,9 @@ def enclosure_by_id(id):
     response_body += f'<ul>ID: {enclosure.id}</ul>'
     response_body += f'<ul>Environment: {enclosure.environment}</ul>'
     response_body += f'<ul>Open to Visitors: {enclosure.open_to_visitors}</ul>'
-    response_body += f'<ul>Animal:{enclosure.animals}</ul>'
+    
+    for animal in enclosure.animals:
+        response_body += f'<ul>Animals: {animal.name}</ul>'
     return make_response(response_body)
 
 
